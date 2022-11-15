@@ -16,6 +16,9 @@ namespace TicTacToe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // Change all buttons to empty
+
             Application.Run(new Form1());
         }
     }
