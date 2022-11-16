@@ -45,8 +45,22 @@ namespace TicTacToe
             {
                 clickedButton.Text = "O";
                 fields[clickedButton.TabIndex] = "O";
-                PcTurn();
+                if (CheckDraw())
+                {
+                    EndGame("draw");
+                }
+                else
+                {
+                    PcTurn();
+                }
+                
             }
+            if (CheckWinnerPlayer())
+            {
+                EndGame("player");
+            }
+
+            
         }
 
         // Create empty lists
@@ -132,7 +146,11 @@ namespace TicTacToe
         // Pc Turn
         private void PcTurn()
         {
-            Start:
+            
+
+            
+
+        Start:
             Random rnd = new Random();
             int choice = rnd.Next(8);
 
@@ -144,6 +162,16 @@ namespace TicTacToe
             {
                 fields[choice] = "X";
                 RefreshBoard();
+            }
+
+            if (CheckWinnerPC())
+            {
+                EndGame("pc");
+            }
+
+            if (CheckDraw())
+            {
+                EndGame("draw");
             }
         }
 
@@ -159,6 +187,23 @@ namespace TicTacToe
             button7.Text = fields[6];
             button8.Text = fields[7];
             button9.Text = fields[8];
+        }
+
+        // 
+        private void EndGame(string winner)
+        {
+            if (winner == "player")
+            {
+                Output.Text = "Wygrałeś!";
+            }
+            else if (winner == "draw")
+            {
+                Output.Text = "Remis";
+            }
+            else
+            {
+                Output.Text = "Przegrałeś :(";
+            }
         }
     }
 }
