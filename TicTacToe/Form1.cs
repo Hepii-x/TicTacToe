@@ -45,6 +45,7 @@ namespace TicTacToe
             {
                 clickedButton.Text = "O";
                 fields[clickedButton.TabIndex] = "O";
+                PcTurn();
             }
         }
 
@@ -126,6 +127,38 @@ namespace TicTacToe
                 return false;
             else
                 return true;
+        }
+
+        // Pc Turn
+        private void PcTurn()
+        {
+            Start:
+            Random rnd = new Random();
+            int choice = rnd.Next(8);
+
+            if (fields[choice] != "-")
+            {
+                goto Start;
+            }
+            else
+            {
+                fields[choice] = "X";
+                RefreshBoard();
+            }
+        }
+
+        // Refresh board after pc turn
+        private void RefreshBoard()
+        {
+            button1.Text = fields[0];
+            button2.Text = fields[1];
+            button3.Text = fields[2];
+            button4.Text = fields[3];
+            button5.Text = fields[4];
+            button6.Text = fields[5];
+            button7.Text = fields[6];
+            button8.Text = fields[7];
+            button9.Text = fields[8];
         }
     }
 }
